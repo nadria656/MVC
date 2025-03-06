@@ -1,0 +1,70 @@
+### Obtener todos los usuarios
+GET http://localhost:3000/api/users
+Authorization: Bearer {{TOKEN}}
+
+### Crear un usuario
+POST http://localhost:3000/api/users
+Content-Type: application/json
+
+{
+    "name": "Ernesto",
+    "email": "micorreo3@correo.es",
+    "age": 37,
+    "password": "Ernesto"
+}
+
+### Iniciar sesión y obtener token
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+    "name": "Ernesto",
+    "email": "micorreo1@correo.es",
+    "password": "Ernesto"
+}
+
+### Actualizar un usuario (requiere token)
+PUT http://localhost:3000/api/users/micorreo2@correo.es
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
+
+{
+    "name": "Marcos",
+    "email": "micorreo2@correo.es",
+    "age": 37,
+    "password": "12345",
+    "role": "admin"
+}
+
+### Eliminar un usuario (requiere token)
+DELETE http://localhost:3000/api/users/micorreo2@correo.es
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
+
+### Subir imagen a IPFS (requiere token)
+POST http://localhost:3000/api/storage
+Content-Type: multipart/form-data
+Authorization: Bearer {{TOKEN}}
+
+--boundary123
+Content-Disposition: form-data; name="image"; filename="jordi.jpg"
+Content-Type: image/jpeg
+
+<C:jordi.jpg>
+--boundary123--
+
+### Subir imagen a almacenamiento local (requiere token)
+POST http://localhost:3000/api/storage/local
+Content-Type: multipart/form-data
+Authorization: Bearer {{TOKEN}}
+
+--boundary123
+Content-Disposition: form-data; name="image"; filename="jordi.jpg"
+Content-Type: image/jpeg
+
+<C:jordi.jpg>
+--boundary123--
+
+### Verificar token
+GET http://localhost:3000/api/verify
+Authorization: Bearer {{TOKEN}}
